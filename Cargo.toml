@@ -1,0 +1,11 @@
+[package]
+name = "is-musl"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "is-musl"
+repository = "https://github.com/ahaoboy/is-musl"
+homepage = "https://github.com/ahaoboy/is-musl"
+authors = ["ahaoboy"]
+include = ["/src", "/Cargo.toml", "/README.md"]
+
