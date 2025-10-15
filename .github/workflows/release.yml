@@ -66,7 +66,7 @@ jobs:
             qemu-utils \
             qemu-user
 
-          curl --retry 5 https://musl.cc/aarch64-linux-musl-cross.tgz | tar xzf -
+          curl -L https://github.com/ahaoboy/aarch64-linux-musl-cross-build/releases/latest/download/aarch64-linux-musl-cross.tgz | tar xzf -
           sudo mv aarch64-linux-musl-cross /musl
 
           echo "CC_aarch64_unknown_linux_musl=aarch64-linux-musl-gcc" >> $GITHUB_ENV
@@ -120,3 +120,11 @@ jobs:
         with:
           name: is-musl-${{ steps.artifact-target.outputs.artifact-target }}
           path: is-musl-${{ steps.artifact-target.outputs.artifact-target }}.*
+      - name: release nightly
+        uses: ncipollo/release-action@v1
+        with:
+          # tag: ${{ steps.build.outputs.tag }}
+          tag: nightly
+          artifacts: "is-musl-${{ steps.artifact-target.outputs.artifact-target }}.*"
+          allowUpdates: true
+          makeLatest: false
