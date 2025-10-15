@@ -12,7 +12,7 @@ pub fn is_musl() -> bool {
 }
 
 fn is_musl_from_filesystem() -> Option<bool> {
-    for i in ["/proc/self/exe", "/bin/sh", "/usr/bin/ldd"] {
+    for i in ["/bin/sh", "/usr/bin/ldd"] {
         if let Ok(found) = std::fs::read(i).map(|i| String::from_utf8_lossy(&i).contains("musl")) {
             return Some(found);
         }
